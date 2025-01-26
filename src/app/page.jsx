@@ -17,6 +17,7 @@ const Destinations = [
     stars: 5,
     image: bali.src,
     categories: ["Asie", "Islands"],
+    price: 1200, // Price in USD
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const Destinations = [
     stars: 4.5,
     image: paris.src,
     categories: ["Popular Destination"],
+    price: 1500, // Price in USD
   },
   {
     id: 3,
@@ -31,6 +33,7 @@ const Destinations = [
     stars: 4.7,
     image: newyork.src,
     categories: ["Popular Destination"],
+    price: 1800, // Price in USD
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const Destinations = [
     stars: 4.9,
     image: tokyo.src,
     categories: ["Popular Destination", "Asie"],
+    price: 1700, // Price in USD
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ const Destinations = [
     stars: 5,
     image: im1.src,
     categories: ["Islands"],
+    price: 1400, // Price in USD
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ const Destinations = [
     stars: 4.8,
     image: greece.src,
     categories: ["Islands"],
+    price: 1600, // Price in USD
   },
 ];
 
@@ -191,11 +197,16 @@ export default function Home() {
                 style={{ backgroundImage: `url(${destination.image})` }}
                 className=" w-full h-full bg-center bg-cover rounded-3xl relative flex justify-center"
               ></div>
+              <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <h3 className="font-[500] text-lg text-[#1c274c]">
                   {destination.name}
                 </h3>
                 <StarRating rating={destination.stars} />
+              </div>
+              <div className="font-[600] text-xl text-[#1c274c]">
+              {destination.price} $
+              </div>
               </div>
             </div>
           ))}
@@ -234,12 +245,17 @@ export default function Home() {
                   style={{ backgroundImage: `url(${destination.image})` }}
                   className="h-[30vh] w-full bg-center bg-cover rounded-3xl"
                 ></div>
-                <div className="flex flex-col">
-                  <h3 className="font-[500] text-lg text-[#1c274c]">
-                    {destination.name}
-                  </h3>
-                  <StarRating rating={destination.stars} />
-                </div>
+                <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                <h3 className="font-[500] text-lg text-[#1c274c]">
+                  {destination.name}
+                </h3>
+                <StarRating rating={destination.stars} />
+              </div>
+              <div className="font-[600] text-xl text-[#1c274c]">
+              {destination.price} $
+              </div>
+              </div>
               </div>
             ))}
           </div>
@@ -282,12 +298,17 @@ export default function Home() {
                   style={{ backgroundImage: `url(${destination.image})` }}
                   className="h-[30vh] w-full bg-center bg-cover rounded-3xl"
                 ></div>
-                <div className="flex flex-col">
-                  <h3 className="font-[500] text-lg text-[#1c274c]">
-                    {destination.name}
-                  </h3>
-                  <StarRating rating={destination.stars} />
-                </div>
+                <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                <h3 className="font-[500] text-lg text-[#1c274c]">
+                  {destination.name}
+                </h3>
+                <StarRating rating={destination.stars} />
+              </div>
+              <div className="font-[600] text-xl text-[#1c274c]">
+              {destination.price} $
+              </div>
+              </div>
               </div>
             ))}
           </div>
