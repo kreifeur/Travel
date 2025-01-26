@@ -7,6 +7,8 @@ import tokyo from "../../public/tokyo.jpg";
 import bali from "../../public/bali.jpg";
 import newyork from "../../public/newyork.jpg";
 import greece from "../../public/greece.jpg";
+import { IoIosStar, IoIosStarOutline, IoIosStarHalf } from "react-icons/io";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Destinations = [
   {
@@ -14,7 +16,7 @@ const Destinations = [
     name: "Bali, Indonesia",
     stars: 5,
     image: bali.src,
-    categories: ["Popular Destination", "Islands"],
+    categories: ["Asie", "Islands"],
   },
   {
     id: 2,
@@ -35,7 +37,7 @@ const Destinations = [
     name: "Tokyo, Japan",
     stars: 4.9,
     image: tokyo.src,
-    categories: ["Popular Destination"],
+    categories: ["Popular Destination", "Asie"],
   },
   {
     id: 5,
@@ -59,6 +61,29 @@ const availableCategories = Array.from(
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const StarRating = ({ rating }) => {
+    const fullStars = Math.floor(rating); // Number of full stars
+    const halfStar = rating % 1 !== 0; // Whether there’s a half star
+    const emptyStars = 5 - Math.ceil(rating); // Remaining empty stars
+
+    return (
+      <div style={{ display: "flex" }}>
+        {[...Array(fullStars)].map((_, index) => (
+          <IoIosStar className="text-lg text-[#fd346e]" key={`full-${index}`} />
+        ))}
+        {halfStar && (
+          <IoIosStarHalf className="text-lg text-[#fd346e]" key="half" />
+        )}
+        {[...Array(emptyStars)].map((_, index) => (
+          <IoIosStarOutline
+            className="text-lg text-[#fd346e]"
+            key={`empty-${index}`}
+          />
+        ))}
+      </div>
+    );
+  };
 
   // Filter destinations by selected category
   const filteredDestinations = selectedCategory
@@ -157,32 +182,23 @@ export default function Home() {
 
         <div className="flex items-center justify-between sm:h-[50vh]  w-full py-6 sm:flex-row flex-col-reverse gap-8">
           {/* image */}
-          <div className="sm:w-[20%] w-full sm:h-full h-[40vh] flex flex-col gap-2">
+          {Destinations.slice(0, 2).map((destination) => (
             <div
-              style={{ backgroundImage: `url(${im1.src})` }}
-              className=" w-full h-full bg-center bg-cover rounded-3xl relative flex justify-center"
-            ></div>
-            <div className="flex flex-col">
-              <div className="font-[500] text-lg text-[#1c274c]">
-                Bali , Indonesia
+              key={destination.id}
+              className="sm:w-[20%] w-full sm:h-full h-[40vh] flex flex-col gap-2"
+            >
+              <div
+                style={{ backgroundImage: `url(${destination.image})` }}
+                className=" w-full h-full bg-center bg-cover rounded-3xl relative flex justify-center"
+              ></div>
+              <div className="flex flex-col">
+                <h3 className="font-[500] text-lg text-[#1c274c]">
+                  {destination.name}
+                </h3>
+                <StarRating rating={destination.stars} />
               </div>
-              <div className="text-s">stars</div>
             </div>
-          </div>
-
-          {/* image */}
-          <div className="sm:w-[20%] w-full sm:h-full h-[40vh] flex flex-col gap-2">
-            <div
-              style={{ backgroundImage: `url(${im1.src})` }}
-              className=" w-full h-full bg-center bg-cover rounded-3xl relative flex justify-center"
-            ></div>
-            <div className="flex flex-col">
-              <div className="font-[500] text-lg text-[#1c274c]">
-                Bali , Indonesia
-              </div>
-              <div className="text-s">stars</div>
-            </div>
-          </div>
+          ))}
 
           {/* text */}
           <div className="sm:w-[50%] sm:h-full w-full  flex flex-col items-start gap-4">
@@ -222,7 +238,7 @@ export default function Home() {
                   <h3 className="font-[500] text-lg text-[#1c274c]">
                     {destination.name}
                   </h3>
-                  <p>{`${destination.stars} stars`}</p>
+                  <StarRating rating={destination.stars} />
                 </div>
               </div>
             ))}
@@ -270,7 +286,7 @@ export default function Home() {
                   <h3 className="font-[500] text-lg text-[#1c274c]">
                     {destination.name}
                   </h3>
-                  <p>{`${destination.stars} stars`}</p>
+                  <StarRating rating={destination.stars} />
                 </div>
               </div>
             ))}
@@ -297,14 +313,14 @@ export default function Home() {
           <div className="flex flex-col gap-2">
             <h3 className="text-lg font-semibold">Follow Us</h3>
             <div className="flex gap-4">
-              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center">
-                F
+              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center bg-[#1877F2]">
+                <FaFacebookF />
               </div>
-              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center">
-                T
+              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center bg-[#1DA1F2]">
+                <FaTwitter />
               </div>
-              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center">
-                I
+              <div className="bg-gray-700 w-8 h-8 rounded-full flex items-center justify-center bg-[#E1306C]">
+                <FaInstagram />
               </div>
             </div>
           </div>
