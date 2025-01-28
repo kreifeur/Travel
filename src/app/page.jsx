@@ -65,6 +65,11 @@ const availableCategories = Array.from(
   new Set(Destinations.flatMap((destination) => destination.categories))
 );
 
+function getRandomValues(array, count) {
+  const shuffled = array.sort(() => 0.5 - Math.random()); // Shuffle the array
+  return shuffled.slice(0, count); // Return the first 'count' items
+}
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -124,60 +129,72 @@ export default function Home() {
         <div className="h-[90vh] w-full flex sm:pt-[5vh] justify-center ">
           <div
             style={{ backgroundImage: `url(${im1.src})` }}
-            className=" w-full sm:h-[70%] h-[100%] bg-center bg-cover rounded-3xl relative flex justify-center"
+            className=" w-full sm:h-[70vh] h-[75vh]  bg-center bg-cover rounded-3xl  flex justify-center relative"
           >
             {/* search */}
-            <div className="w-[80%] shadow rounded-xl bg-white h-[20vh] absolute  bottom-[-10vh] p-4 sm:flex flex-col justify-around hidden">
+            <div className="sm:w-[80%] w-[90%] shadow rounded-xl bg-white sm:h-[20vh] h-[50vh] absolute  bottom-[-10vh] p-4 sm:flex flex-col justify-around ">
               <ul className="flex gap-8 items-center font-[500]">
-                <li className="font-[500]">Hotel</li>
-                <li className="font-[500]">Flight</li>
-                <li className="font-[500]">Bus & Train</li>
-                <li className="font-[500]">Holiday</li>
+                <li className="font-[500] text-[#fd346e] border-b border-b-white border-b-[2px]">
+                  Hotel
+                </li>
+                <li className="font-[500] border-b border-b-white border-b-[2px] ">
+                  Flight
+                </li>
+                <li className="font-[500] border-b border-b-white border-b-[2px] ">
+                  Bus & Train
+                </li>
+                <li className="font-[500] border-b border-b-white border-b-[2px] ">
+                  Holiday
+                </li>
               </ul>
-              <hr className="border-[0.7px] border-gray-100" />
-              <div className="flex items-center gap-8 justify-between">
+              <hr className="border-[0.7px] border-[#fd346e]" />
+              <div className="flex sm:items-center gap-8 justify-between sm:flex-row flex-col items-start ">
                 {/* one */}
-                <div className="flex flex-col gap-2 ">
-                  <div className="font-[500] text-gray-500">Destination</div>
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="font-[300] text-gray-400 text-sm">
+                    Destination
+                  </div>
                   <input
                     placeholder="Bali , Indonesia"
                     type="text"
-                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[500]"
+                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[300] w-full"
                   />
                 </div>
                 {/* one */}
-                <div className="flex flex-col gap-2 ">
-                  <div className="font-[500] text-gray-500">Destination</div>
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="font-[300] text-gray-400 text-sm">
+                    Check-in
+                  </div>
                   <input
-                    placeholder="Bali , Indonesia"
-                    type="text"
-                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[500]"
-                  />
-                </div>
-
-                {/* one */}
-                <div className="flex flex-col gap-2 ">
-                  <div className="font-[500] text-gray-500">Destination</div>
-                  <input
-                    placeholder="Bali , Indonesia"
-                    type="text"
-                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[500]"
+                    type="Date"
+                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[300] w-full"
                   />
                 </div>
 
                 {/* one */}
-                <div className="flex flex-col gap-2 ">
-                  <div className="font-[500] text-gray-500">Destination</div>
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="font-[300] text-gray-400 text-sm">
+                    Check-out
+                  </div>
                   <input
-                    placeholder="Bali , Indonesia"
+                    type="Date"
+                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[300] w-full"
+                  />
+                </div>
+
+                {/* one */}
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="font-[300] text-gray-400 text-sm">Guests</div>
+                  <input
+                    placeholder="2 Guests"
                     type="text"
-                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[500]"
+                    className="outline-none px-3 py-2 rounded-xl bg-gray-100 placeholder:text-black placeholder:font-[300] w-full"
                   />
                 </div>
 
                 {/* search */}
 
-                <button className="px-4 bg-[#18ABC6] text-white py-2 rounded font-[500] shadow">
+                <button className="px-10 bg-[#18ABC6] text-white py-2 rounded font-[500] shadow">
                   Search
                 </button>
               </div>
@@ -198,15 +215,15 @@ export default function Home() {
                 className=" w-full h-full bg-center bg-cover rounded-3xl relative flex justify-center"
               ></div>
               <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <h3 className="font-[500] text-lg text-[#1c274c]">
-                  {destination.name}
-                </h3>
-                <StarRating rating={destination.stars} />
-              </div>
-              <div className="font-[600] text-xl text-[#1c274c]">
-              {destination.price} $
-              </div>
+                <div className="flex flex-col">
+                  <h3 className="font-[500] text-lg text-[#1c274c]">
+                    {destination.name}
+                  </h3>
+                  <StarRating rating={destination.stars} />
+                </div>
+                <div className="font-[600] text-xl text-[#1c274c]">
+                  {destination.price} $
+                </div>
               </div>
             </div>
           ))}
@@ -246,16 +263,16 @@ export default function Home() {
                   className="h-[30vh] w-full bg-center bg-cover rounded-3xl"
                 ></div>
                 <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <h3 className="font-[500] text-lg text-[#1c274c]">
-                  {destination.name}
-                </h3>
-                <StarRating rating={destination.stars} />
-              </div>
-              <div className="font-[600] text-xl text-[#1c274c]">
-              {destination.price} $
-              </div>
-              </div>
+                  <div className="flex flex-col">
+                    <h3 className="font-[500] text-lg text-[#1c274c]">
+                      {destination.name}
+                    </h3>
+                    <StarRating rating={destination.stars} />
+                  </div>
+                  <div className="font-[600] text-xl text-[#1c274c]">
+                    {destination.price} $
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -299,16 +316,16 @@ export default function Home() {
                   className="h-[30vh] w-full bg-center bg-cover rounded-3xl"
                 ></div>
                 <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <h3 className="font-[500] text-lg text-[#1c274c]">
-                  {destination.name}
-                </h3>
-                <StarRating rating={destination.stars} />
-              </div>
-              <div className="font-[600] text-xl text-[#1c274c]">
-              {destination.price} $
-              </div>
-              </div>
+                  <div className="flex flex-col">
+                    <h3 className="font-[500] text-lg text-[#1c274c]">
+                      {destination.name}
+                    </h3>
+                    <StarRating rating={destination.stars} />
+                  </div>
+                  <div className="font-[600] text-xl text-[#1c274c]">
+                    {destination.price} $
+                  </div>
+                </div>
               </div>
             ))}
           </div>
