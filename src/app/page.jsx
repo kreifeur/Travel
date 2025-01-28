@@ -126,7 +126,7 @@ export default function Home() {
           </div>
         </div>
         {/* hero */}
-        <div className="h-[90vh] w-full flex sm:pt-[5vh] justify-center ">
+        <div className="min-h-[90vh] w-full flex sm:pt-[5vh] justify-center ">
           <div
             style={{ backgroundImage: `url(${im1.src})` }}
             className=" w-full sm:h-[70vh] h-[75vh]  bg-center bg-cover rounded-3xl  flex justify-center relative"
