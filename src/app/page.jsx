@@ -9,6 +9,8 @@ import newyork from "../../public/newyork.jpg";
 import greece from "../../public/greece.jpg";
 import { IoIosStar, IoIosStarOutline, IoIosStarHalf } from "react-icons/io";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Destinations = [
   {
@@ -113,7 +115,7 @@ export default function Home() {
             <span className="text-[#18ABC6] font-[600] text-xl">Visor</span>
           </div>
           <ul className="sm:flex hidden items-center gap-6 ">
-            <li className="font-[500]">Home</li>
+            <li className="font-[500]"><a href="/home">Home</a></li>
             <li className="font-[500]">ticket</li>
             <li className="font-[500]">explore</li>
             <li className="font-[500]">activity</li>
@@ -132,7 +134,7 @@ export default function Home() {
             className=" w-full sm:h-[70vh] h-[30vh]  bg-center bg-cover rounded-3xl  flex justify-center relative"
           >
             {/* search */}
-            <div className="sm:w-[80%] w-[90%] shadow rounded-xl bg-white sm:h-[20vh] min-h-[50vh] absolute  sm:bottom-[-10vh] top-[25vh] p-4 sm:flex flex-col justify-around ">
+            <div className="sm:w-[80%] w-[90%] shadow rounded-xl bg-white sm:max-h-[20vh] h-[50vh] absolute   sm:top-[55vh] top-[25vh] sm:bottom-[-10vh] p-4 sm:flex flex-col justify-around ">
               <ul className="flex gap-8 items-center font-[500]">
                 <li className="font-[500] text-[#fd346e] border-b border-b-white border-b-[2px]">
                   Hotel
@@ -310,7 +312,15 @@ export default function Home() {
           {/* Filtered Destinations */}
           <div className="w-full grid sm:grid-cols-4 grid-cols-1 gap-8">
             {filteredDestinations.map((destination) => (
-              <div key={destination.id} className="w-full flex flex-col gap-2">
+             <Link
+             href={{
+               pathname: `/${destination.id}`,
+               query: { name: destination.name , price:destination.price,image:destination.image , stars:destination.stars}, // Pass name as query param
+             }}
+             key={destination.id}
+             className="w-full flex flex-col gap-2"
+           >
+         
                 <div
                   style={{ backgroundImage: `url(${destination.image})` }}
                   className="h-[30vh] w-full bg-center bg-cover rounded-3xl"
@@ -326,7 +336,7 @@ export default function Home() {
                     {destination.price} $
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
