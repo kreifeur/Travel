@@ -373,7 +373,7 @@ export default function Home() {
         </section>
 
         {/* About Us / Why Choose Us */}
-        <section className="w-full py-12 mb-12">
+        <section className="w-full py-12 mb-12 ">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-[500] text-[#1c274c]">
               Why Choose TravelVisor
@@ -383,8 +383,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 grid-cols-1 gap-8">
-            <div className="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center">
+          <div className="grid sm:grid-cols-3 grid-cols-1 gap-8 ">
+            <div className="bg-white p-6 rounded-2xl shadow-md flex flex-col items-center text-center ">
               <GiWorld className="text-4xl text-[#18ABC6] mb-4" />
               <h3 className="text-xl font-semibold mb-2">Expert Guides</h3>
               <p className="text-gray-600">
